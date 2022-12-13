@@ -76,8 +76,8 @@ const React = (function () {
         ? !depArray.every((el, i) => el === deps[i])
         : true;
       if (hasNoDeps || hasChangedDeps) {
-        callback();
         hooks[currentIndex] = depArray;
+        callback();
       }
       currentIndex++;
     },
@@ -211,6 +211,10 @@ function HomePage(props) {
   const [products, setProducts] = React.useState([]);
 
   const [errorMessage, setErrorMessage] = React.useState("");
+
+  React.useEffect(() => {
+    setLoading(true);
+  }, []);
 
   React.useEffect(() => {
     if (loading) {
